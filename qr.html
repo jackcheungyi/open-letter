@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>掃描開啟</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&family=Jost:wght@300;400&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:         #fdf6f0;
+      --surface:    #f5e8e0;
+      --accent:     #c97b8e;
+      --text:       #2d1a22;
+      --text-muted: #6b4455;
+      --border:     #ddb8c4;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Noto Serif TC', Georgia, serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      max-width: 360px;
+      width: 100%;
+      box-shadow: 0 8px 32px rgba(45, 26, 34, 0.08);
+    }
+    .caption {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .title {
+      font-family: 'Cormorant Garamond', 'Noto Serif TC', Georgia, serif;
+      font-style: italic;
+      font-weight: 300;
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+      letter-spacing: 0.03em;
+    }
+    .qr-wrap {
+      background: #ffffff;
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      display: inline-block;
+      margin-bottom: 1.5rem;
+    }
+    #qr-canvas {
+      display: block;
+      margin: 0 auto;
+    }
+    .url {
+      font-family: 'Jost', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      word-break: break-all;
+      line-height: 1.6;
+    }
+    .petal {
+      font-size: 1.3rem;
+      color: var(--accent);
+      opacity: 0.6;
+      margin-top: 1.25rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <p class="caption">For 綽宜</p>
+    <h1 class="title">掃描開啟</h1>
+    <div class="qr-wrap">
+      <canvas id="qr-canvas"></canvas>
+    </div>
+    <p class="url">jackcheungyi.github.io/open-letter</p>
+    <div class="petal" aria-hidden="true">✿</div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script>
+    const url = 'https://jackcheungyi.github.io/open-letter/';
+    QRCode.toCanvas(document.getElementById('qr-canvas'), url, {
+      width: 240,
+      margin: 1,
+      color: {
+        dark:  '#2d1a22',
+        light: '#ffffff'
+      },
+      errorCorrectionLevel: 'M'
+    }, function (err) {
+      if (err) console.error(err);
+    });
+  </script>
+</body>
+</html>
