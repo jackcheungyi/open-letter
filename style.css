@@ -225,14 +225,15 @@ section {
 .reflections-feed {
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 2rem;
 }
 
+/* each day = a group of text-message bubbles */
 .reflection-card {
-  background: var(--surface);
-  border-left: 3px solid var(--accent);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  padding: 1.25rem 1.25rem 1.25rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
   opacity: 0;
   transform: translateY(18px);
   transition: opacity 0.55s ease, transform 0.55s ease;
@@ -243,25 +244,33 @@ section {
   transform: translateY(0);
 }
 
+/* centred date stamp, like a chat timestamp */
 .card-date {
-  display: block;
+  align-self: center;
   font-family: var(--font-ui);
-  font-weight: 300;
-  font-size: 0.74rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 0.6rem;
+  font-weight: 400;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 0.15rem 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .reflection-card p {
-  font-size: 0.95rem;
+  max-width: 86%;
+  background: #f6d9e1;
   color: var(--text);
-  line-height: 1.85;
+  font-size: 0.93rem;
+  line-height: 1.7;
+  padding: 0.6rem 0.9rem;
+  border-radius: 18px;
 }
 
-.reflection-card p + p {
-  margin-top: 0.9em;
+/* tail corner on the last bubble of the day */
+.reflection-card p:last-child {
+  border-bottom-right-radius: 5px;
 }
 
 /* ── Promises Section ── */
