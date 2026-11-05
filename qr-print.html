@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>QR Code Generator — Print</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      padding: 2rem;
+      text-align: center;
+      background: #fdf6f0;
+      color: #2d1a22;
+    }
+    h1 { font-weight: 300; margin-bottom: 0.5rem; }
+    .url { color: #6b4455; margin-bottom: 2rem; font-size: 0.9rem; }
+    #preview {
+      max-width: 400px;
+      border: 1px solid #ddb8c4;
+      border-radius: 8px;
+      padding: 20px;
+      background: white;
+      display: inline-block;
+    }
+    #preview canvas {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background: #c97b8e;
+      color: white;
+      border: none;
+      border-radius: 999px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+    }
+    button:hover { background: #b06677; }
+    .note {
+      margin-top: 1.5rem;
+      font-size: 0.85rem;
+      color: #6b4455;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <h1>QR Code Preview</h1>
+  <p class="url">https://jackcheungyi.github.io/open-letter/</p>
+  <div id="preview"><canvas id="qr-canvas"></canvas></div>
+  <br>
+  <button onclick="download()">Download PNG for Printing</button>
+  <p class="note">1024 × 1024 px · high-contrast black on white · scales cleanly to any card size. For a business-card-sized print, aim for 2.5 cm × 2.5 cm minimum.</p>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script>
+    const url = 'https://jackcheungyi.github.io/open-letter/';
+    const canvas = document.getElementById('qr-canvas');
+
+    QRCode.toCanvas(canvas, url, {
+      width: 1024,
+      margin: 2,
+      color: {
+        dark:  '#000000',
+        light: '#ffffff'
+      },
+      errorCorrectionLevel: 'H'
+    }, function (err) {
+      if (err) console.error(err);
+    });
+
+    function download() {
+      const link = document.createElement('a');
+      link.download = 'open-letter-qr.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  </script>
+</body>
+</html>
