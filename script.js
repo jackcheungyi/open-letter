@@ -25,7 +25,7 @@ dots.forEach(dot => {
 });
 
 // Scroll-triggered fade-in for reflection cards and promise blocks
-const animatedEls = document.querySelectorAll('.reflection-card, .promise-block');
+const animatedEls = document.querySelectorAll('.reflection-card, .promise-block, .dance-message');
 
 const fadeObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -37,3 +37,28 @@ const fadeObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 
 animatedEls.forEach(el => fadeObserver.observe(el));
+
+// Dance video — play when on screen, pause when away; tap to toggle sound
+const danceVideo = document.querySelector('.dance-video');
+const soundBtn = document.querySelector('.dance-sound');
+
+if (danceVideo) {
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        danceVideo.play().catch(() => {});
+      } else {
+        danceVideo.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  videoObserver.observe(danceVideo);
+
+  soundBtn?.addEventListener('click', () => {
+    danceVideo.muted = !danceVideo.muted;
+    soundBtn.textContent = danceVideo.muted ? '🔇' : '🔊';
+    soundBtn.setAttribute('aria-label', danceVideo.muted ? '開聲' : '靜音');
+    if (!danceVideo.muted) danceVideo.play().catch(() => {});
+  });
+}

@@ -334,6 +334,68 @@ section {
   margin: 1.5rem auto 0;
 }
 
+/* ── Dance Section ── */
+#dance {
+  background: var(--bg);
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#dance .section-inner {
+  width: 100%;
+}
+
+.dance-message {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: clamp(1.25rem, 4.5vw, 1.6rem);
+  color: var(--accent-ink);
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.dance-message.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dance-video-wrap {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 20px rgba(11, 42, 61, 0.10);
+  background: var(--surface);
+}
+
+.dance-video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.dance-sound {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: rgba(244, 250, 253, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
 /* ── Footer ── */
 footer {
   background: var(--surface);
@@ -381,7 +443,8 @@ footer p {
   html { scroll-behavior: auto; }
   .scroll-arrow { animation: none; }
   .reflection-card,
-  .promise-block {
+  .promise-block,
+  .dance-message {
     opacity: 1;
     transform: none;
     transition: none;
