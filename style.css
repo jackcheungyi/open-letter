@@ -1,13 +1,14 @@
 /* ── Variables ── */
 :root {
-  --bg:         #fdf6f0;
-  --surface:    #f5e8e0;
-  --accent:     #c97b8e;
-  --accent-lt:  #e8b4c0;
-  --text:       #2d1a22;
-  --text-muted: #6b4455;
-  --border:     #ddb8c4;
-  --hero-bg:    #f0d8e0;
+  --bg:         #f4fafd;
+  --surface:    #e3f3fb;
+  --accent:     #4cc3f2; /* fills & decoration only: too light for text */
+  --accent-ink: #13729f; /* accent for text: ~4.7:1 on --bg/--surface */
+  --accent-lt:  #a9e0f7;
+  --text:       #0b2a3d;
+  --text-muted: #3d5f73;
+  --border:     #b5dcee;
+  --hero-bg:    #4cc3f2;
 
   --font-display: 'Playfair Display', 'Noto Serif TC', Georgia, serif;
   --font-heading: 'Cormorant Garamond', 'Noto Serif TC', Georgia, serif;
@@ -47,14 +48,14 @@ body {
   transform: translateX(-50%);
   display: flex;
   gap: 14px;
-  background: rgba(253, 246, 240, 0.88);
+  background: rgba(244, 250, 253, 0.88);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border);
   border-radius: 999px;
   padding: 10px 20px;
   z-index: 100;
-  box-shadow: 0 4px 20px rgba(45, 26, 34, 0.10);
+  box-shadow: 0 4px 20px rgba(11, 42, 61, 0.10);
 }
 
 .nav-dot {
@@ -100,7 +101,7 @@ section {
   font-style: italic;
   font-weight: 300;
   font-size: clamp(1.75rem, 5vw, 2.25rem);
-  color: var(--accent);
+  color: var(--accent-ink);
   letter-spacing: 0.02em;
   margin-bottom: 0.4rem;
 }
@@ -116,8 +117,11 @@ section {
 /* ── Hero Section ── */
 #hero {
   min-height: 100svh;
+  /* local text tokens keep contrast readable on the hero blue */
+  --hero-ink:       var(--text); /* ~7:1 on hero blue */
+  --hero-ink-muted: #1b4a63;     /* ~4.7:1 on hero blue */
   background: var(--hero-bg);
-  background-image: radial-gradient(ellipse at 50% 40%, #f9e4ec 0%, var(--hero-bg) 70%);
+  background-image: radial-gradient(ellipse at 50% 40%, #7fd4f6 0%, var(--hero-bg) 70%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,8 +137,8 @@ section {
   content: '✿';
   position: absolute;
   font-size: 8rem;
-  color: var(--accent-lt);
-  opacity: 0.18;
+  color: #ffffff;
+  opacity: 0.22;
   pointer-events: none;
 }
 #hero::before { top: -1.5rem; left: -1.5rem; transform: rotate(-20deg); }
@@ -155,13 +159,13 @@ section {
   font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--hero-ink-muted);
 }
 
 .hero-name {
   font-family: var(--font-script);
   font-size: clamp(3rem, 13vw, 4rem);
-  color: var(--accent);
+  color: var(--hero-ink);
   line-height: 1.15;
   font-weight: 400;
 }
@@ -171,7 +175,7 @@ section {
   font-style: italic;
   font-weight: 400;
   font-size: clamp(1.6rem, 6.5vw, 2.4rem);
-  color: var(--text);
+  color: var(--hero-ink);
   line-height: 1.25;
   max-width: 320px;
   margin-top: 0.2rem;
@@ -190,7 +194,7 @@ section {
 .hero-divider {
   width: 60px;
   height: 1px;
-  background: var(--accent);
+  background: var(--hero-ink);
   margin: 0.6rem auto;
   opacity: 0.6;
 }
@@ -199,7 +203,7 @@ section {
   font-family: var(--font-body);
   font-style: italic;
   font-size: 0.95rem;
-  color: var(--text-muted);
+  color: var(--hero-ink-muted);
   max-width: 260px;
   text-align: center;
   line-height: 1.6;
@@ -207,7 +211,7 @@ section {
 
 .scroll-arrow {
   margin-top: 1.5rem;
-  color: var(--accent);
+  color: var(--hero-ink);
   opacity: 0.7;
   animation: bob 2.2s ease-in-out infinite;
 }
@@ -260,7 +264,7 @@ section {
 
 .reflection-card p {
   max-width: 86%;
-  background: #f6d9e1;
+  background: #d4eefa;
   color: var(--text);
   font-size: 0.93rem;
   line-height: 1.7;
@@ -300,7 +304,7 @@ section {
   font-family: 'Noto Serif TC', Georgia, serif;
   font-weight: 300;
   font-size: 2rem;
-  color: var(--accent);
+  color: var(--accent-ink);
   line-height: 1;
   margin-bottom: 0.5rem;
   letter-spacing: 0.05em;
@@ -330,39 +334,6 @@ section {
   margin: 1.5rem auto 0;
 }
 
-/* ── Heart Section ── */
-#heart {
-  background: var(--bg);
-}
-
-.letter-body {
-  max-width: var(--max-w);
-  margin: 0 auto;
-  font-style: italic;
-  font-size: 1rem;
-  line-height: 1.95;
-  color: var(--text);
-}
-
-.letter-body p {
-  margin-bottom: 1.4em;
-}
-
-.letter-body p:last-of-type {
-  margin-bottom: 0;
-}
-
-.letter-signature {
-  font-family: 'Noto Serif TC', Georgia, serif;
-  font-weight: 300;
-  font-size: 1.1rem;
-  font-style: normal;
-  color: var(--accent);
-  text-align: right;
-  margin-top: 2rem !important;
-  letter-spacing: 0.15em;
-}
-
 /* ── Footer ── */
 footer {
   background: var(--surface);
@@ -379,7 +350,7 @@ footer {
 
 .footer-petal {
   font-size: 1.4rem;
-  color: var(--accent);
+  color: var(--accent-ink);
   opacity: 0.6;
 }
 
@@ -402,9 +373,6 @@ footer p {
   }
   .reflection-card {
     padding: 1.5rem 1.5rem 1.5rem 1.7rem;
-  }
-  .letter-body {
-    font-size: 1.05rem;
   }
 }
 
